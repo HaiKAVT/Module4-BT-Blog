@@ -13,7 +13,7 @@
 
 <div class="container">
   <h2  style="background-color:DodgerBlue; text-align:center;">Table Edit Blog</h2>
-  <form method="post">
+  <form method="post" enctype="multipart/form-data">
     <table class="table">
       <thead style="background-color:SlateBlue;">
       <tr>
@@ -22,6 +22,7 @@
         <th>Ten Bai Viet</th>
         <th>Ngay Dang</th>
         <th>Noi Dung Bai Viet</th>
+        <th>Image</th>
 
       </tr>
       </thead>
@@ -32,11 +33,15 @@
         <td><input th:field="${blog.tenBlog}"></td>
         <td><input type="date" th:field="${blog.date}"></td>
         <td><input th:field="${blog.noiDung}"></td>
+         <td><input type="file" name="uppImg"></td>
+
       </tr>
       </tbody>
     </table>
     <button type="submit" class="btn btn-success">Edit Blog</button>
-
+    <a href="/blog"  class="btn btn-success">
+      Back to list
+    </a>
   </form>
 </div>
 

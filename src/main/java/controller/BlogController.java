@@ -4,10 +4,14 @@ import model.Blog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import service.IBlogService;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 @Controller
@@ -33,7 +37,15 @@ public class BlogController {
     }
 
     @PostMapping("/create")
-    public ModelAndView create(@ModelAttribute Blog blog) {
+    public ModelAndView create(@ModelAttribute Blog blog, @RequestParam MultipartFile uppImg) {
+        String nameImg = uppImg.getOriginalFilename();
+        try {
+            FileCopyUtils.copy(uppImg.getBytes(), new File("C:\\CodeGym\\Module4\\Bai6\\Blog\\src\\main\\webapp\\image/" + nameImg));
+            String urlImg = "/image/" + nameImg;
+            blog.setImage(urlImg);
+        } catch (IOException e) {
+            System.err.println("chưa uppload file");
+        }
         iBlogService.save(blog);
         return new ModelAndView("redirect:/blog");
     }
@@ -44,7 +56,15 @@ public class BlogController {
         return modelAndView;
     }
     @PostMapping("/edit/{index}")
-    public ModelAndView edit(@ModelAttribute Blog blog){
+    public ModelAndView edit(@ModelAttribute Blog blog,@RequestParam MultipartFile uppImg){
+        String nameImg = uppImg.getOriginalFilename();
+        try {
+            FileCopyUtils.copy(uppImg.getBytes(), new File("C:\\CodeGym\\Module4\\Bai6\\Blog\\src\\main\\webapp\\image/" + nameImg));
+            String urlImg = "/image/" + nameImg;
+            blog.setImage(urlImg);
+        } catch (IOException e) {
+            System.err.println("chưa uppload file");
+        }
         iBlogService.edit(blog);
         return new ModelAndView("redirect:/blog");
     }

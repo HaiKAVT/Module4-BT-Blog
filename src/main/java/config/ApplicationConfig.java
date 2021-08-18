@@ -13,7 +13,9 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.TemplateEngine;
@@ -115,6 +117,22 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     @Bean
     public IBlogService iBlogService(){
         return new BlogService();
+    }
+
+    @Override
+    // chỉ cho Spring biết chỗ lấy tài liệu tĩnh.(js,css,img)
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/image/**/")
+                .addResourceLocations("file:C:\\CodeGym\\Module4\\Bai6\\Blog\\src\\main\\webapp\\image/");
+
+    }
+
+
+    @Bean
+    public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setMaxUploadSizePerFile(10000000);
+        return multipartResolver;
     }
 
 }

@@ -15,6 +15,16 @@ public class Blog {
     private Date date;
     @Column(columnDefinition = "TEXT")
     private  String noiDung;
+    private String image;
+
+    public Blog(int id, String tacGia, String tenBlog, Date date, String noiDung, String image) {
+        this.id = id;
+        this.tacGia = tacGia;
+        this.tenBlog = tenBlog;
+        this.date = date;
+        this.noiDung = noiDung;
+        this.image = image;
+    }
 
     public Blog() {
     }
@@ -65,5 +75,13 @@ public class Blog {
 
     public void setNoiDung(String noiDung) {
         this.noiDung = noiDung;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

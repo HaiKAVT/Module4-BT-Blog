@@ -29,8 +29,8 @@
             <th>Ten Tac Gia</th>
             <th>Ten Bai Viet</th>
             <th>Ngay Dang</th>
-            <th>Noi Dung Bai Viet</th>
-
+            <th>Image</th>
+            <th>Noi Dung Chi Tiet</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -40,7 +40,7 @@
             <td th:text="${blog.tacGia}"></td>
             <td th:text="${blog.tenBlog}"></td>
             <td th:text="${blog.date}"></td>
-
+            <td><img th:src="${blog.image}" width="100px" height="100px"></td>
             <td><a th:href="@{/read/{index}(index=${loop.index})}" class="btn btn-primary"> Read </a></td>
             <td><a th:href="@{/edit/{index}(index = ${loop.index})}" class="btn btn-warning">Edit</a>
                 <a th:href="@{/delete/{index}(index = ${loop.index})}" class="btn btn-danger">Delete</a></td>

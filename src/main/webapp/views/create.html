@@ -13,7 +13,7 @@
 
 <div class="container">
     <h2  style="background-color:DodgerBlue; text-align:center;">Table Create Customer</h2>
-    <form th:action="@{create}" th:object="${list}" method="post" nctype="multipart/form-data">
+    <form th:action="@{create}" th:object="${list}" method="post" enctype="multipart/form-data" >
         <table class="table">
             <tbody>
             <tr>
@@ -33,6 +33,10 @@
                 <div>
                     <label>Noi Dung</label>
                     <input type="text"  placeholder="nhap noi dung" th:field="*{noiDung}" >
+                </div>
+                <div>
+                    <label>Image</label>
+                    <input type="file" name="uppImg">
                 </div>
             </tr>
             </tbody>
